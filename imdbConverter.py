@@ -15,6 +15,6 @@ with open(file_to_process, 'rb') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for idx, row in enumerate(csv_reader):
         if idx != 0:
-            row[8] = row[9]
+            row[8] = row[9].split('.')[0]
         file_result.write(','.join(['"'+str(x)+'"' for x in row]) + '\n')
 file_result.close()
