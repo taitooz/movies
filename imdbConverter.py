@@ -8,14 +8,13 @@ import csv
 import time
 import requests
 
-file_to_process = 'imdb.csv'
+file_to_process = 'imdbfy.csv'
 file_result = open("modified_imdb.csv", "w")
 
 with open(file_to_process, 'rb') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-    for row in csv_reader:
-        row_array = []
-        for idx, column_data in enumerate(row):
-            row_array.append('"' + column_data + '"')
-        file_result.write(','.join(row_array) + '\n')
+    for idx, row in enumerate(csv_reader):
+        if idx != 0:
+            row[8] = row[9]
+        file_result.write(','.join(['"'+str(x)+'"' for x in row]) + '\n')
 file_result.close()
